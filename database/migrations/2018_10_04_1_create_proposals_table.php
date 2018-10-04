@@ -16,6 +16,7 @@ class CreateProposalsTable extends Migration
             $table->string('client_source');
             $table->string('client_name');
             $table->string('value');
+            $table->string('code');
             $table->date('due');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')

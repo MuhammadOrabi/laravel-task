@@ -14,6 +14,9 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         if ($this->app->environment() == 'local') {
+            if (class_exists('Vluzrmos\Tinker\TinkerServiceProvider')) {
+                $this->app->register('Vluzrmos\Tinker\TinkerServiceProvider');
+            }
             $this->app->register('Wn\Generators\CommandsServiceProvider');
         }
     }

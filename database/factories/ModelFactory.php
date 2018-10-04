@@ -19,15 +19,6 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 /**
- * Factory definition for model App\Task.
- */
-$factory->define(App\Task::class, function ($faker) {
-    return [
-        'project_id' => $faker->key,
-    ];
-});
-
-/**
  * Factory definition for model App\Proposal.
  */
 $factory->define(App\Proposal::class, function ($faker) {
