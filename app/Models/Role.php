@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model {
+class Role extends Model 
+{
 
     protected $fillable = ["title", "slug"];
 
@@ -14,5 +15,19 @@ class Role extends Model {
     ];
 
     // Relationships
+    /**
+     * The users that belong to the role.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 
+    /**
+     * The permissions that belong to the role.
+     */
+    public function permissions()
+    {
+        return $this->belongsToMany('App\Models\Permission');
+    }
 }

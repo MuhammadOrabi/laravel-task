@@ -15,5 +15,11 @@ class Permission extends Model {
     ];
 
     // Relationships
-
+    /**
+     * The roles that belong to the permission.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
 }

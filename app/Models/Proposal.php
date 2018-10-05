@@ -8,7 +8,7 @@ class Proposal extends Model {
         'type', 'approval_from', 'due', 'client_source', 'client_name', 'value', 'user_id'
     ];
 
-    protected $attributes = [
+    protected $model_attributes = [
         'type', 'approval_from', 'due', 'client_source', 
         'client_name', 'value', 'user_id', 'code', 'created_at', 
         'updated_at', 'deleted_at', 'id'
@@ -25,7 +25,6 @@ class Proposal extends Model {
         'due' => 'required',
         'client_name' => 'required',
         'value' => 'required',
-        'user_id' => 'required|numeric',
     ];
 
     public function user()
@@ -60,7 +59,7 @@ class Proposal extends Model {
         if ($request->has('attr')) {
             $attributes = explode(',', $request->get('attr'));
             $query->select(
-                array_intersect($attributes, $this->attributes) ?: '*'
+                array_intersect($attributes, $this->model_attributes) ?: '*'
             );
         }
 

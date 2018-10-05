@@ -34,7 +34,7 @@ class JwtMiddleware
 
         $user = User::findOrFail($credentials->sub);
 
-        $request->auth = $user;
+        $request->user = $user;
 
         return $next($request);
     }

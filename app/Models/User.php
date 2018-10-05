@@ -25,7 +25,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 'remember_token'
     ];
 
     public static $rules = [
@@ -36,5 +36,20 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function proposal()
     {
         return $this->hasMany('App\Models\Proposal');
+    }
+
+     /**
+     * The roles that belong to the admin.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany('App\Models\Role');
+    }
+
+    public function getRole($model, $slug)
+    {
+        return $this->roles()->whereHas('permissions', function ($query) use ($model, $slug) {
+            $query->where('model', $model)->where('slug', $slug);
+        })->get()->first();
     }
 }

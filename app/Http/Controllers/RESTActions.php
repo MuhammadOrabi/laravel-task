@@ -8,6 +8,11 @@ trait RESTActions
     public function all(Request $request)
     {
         $m = self::MODEL;
+
+        if ($request->user->cannot('view', $m)) {
+            abort(403);
+        }
+
         $data = $m::query();
         
         if (method_exists($m, 'scopeFiltered')) {
@@ -21,9 +26,14 @@ trait RESTActions
         return $this->respond(Response::HTTP_OK, $data);
     }
 
-    public function get($id)
+    public function get(Request $request, $id)
     {
         $m = self::MODEL;
+        
+        if ($request->user->cannot('view', $m)) {
+            abort(403);
+        }
+
         $model = $m::find($id);
         if(is_null($model)){
             return $this->respond(Response::HTTP_NOT_FOUND);
@@ -34,14 +44,24 @@ trait RESTActions
     public function add(Request $request)
     {
         $m = self::MODEL;
+
+        if ($request->user->cannot('create', $m)) {
+            abort(403);
+        }
+
         $this->validate($request, $m::$rules);
         return $this->respond(Response::HTTP_CREATED, $m::create($request->all()));
     }
 
-    public function put(Request $request, $id)
+    public function put($id, Request $request)
     {
         $m = self::MODEL;
+
+        if ($request->user->cannot('update', $m)) {
+            abort(403);
+        }
         $this->validate($request, $m::$rules);
+
         $model = $m::find($id);
         if(is_null($model)){
             return $this->respond(Response::HTTP_NOT_FOUND);
@@ -50,9 +70,14 @@ trait RESTActions
         return $this->respond(Response::HTTP_OK, $model);
     }
 
-    public function remove($id)
+    public function remove(Request $request, $id)
     {
         $m = self::MODEL;
+
+        if ($request->user->cannot('delete', $m)) {
+            abort(403);
+        }
+
         if (is_null($m::find($id))) {
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
