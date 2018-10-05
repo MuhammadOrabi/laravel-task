@@ -5,10 +5,20 @@ use Illuminate\Http\Response;
 
 trait RESTActions 
 {
-    public function all()
+    public function all(Request $request)
     {
         $m = self::MODEL;
-        return $this->respond(Response::HTTP_OK, $m::all());
+        $data = $m::query();
+        
+        if (method_exists($m, 'scopeFiltered')) {
+            $data = $m::filtered($request);
+        }
+
+        $data = $data->paginate()->appends(
+            $request->except('page')
+        );
+        
+        return $this->respond(Response::HTTP_OK, $data);
     }
 
     public function get($id)

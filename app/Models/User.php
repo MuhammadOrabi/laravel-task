@@ -32,4 +32,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'email'     => 'required|email',
         'password'  => 'required'
     ];
+
+    public function proposal()
+    {
+        return $this->hasMany('App\Models\Proposal');
+    }
 }

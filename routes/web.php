@@ -27,22 +27,4 @@ $router->group(['prefix' => 'api', 'middleware' => 'jwt.auth'], function () use 
     $router->post('proposal', 'ProposalsController@add');
     $router->put('proposal/{id}', 'ProposalsController@put');
     $router->delete('proposal/{id}', 'ProposalsController@remove');
-    
-    /**
-     * Routes for resource role
-     */
-    $router->get('role', 'RolesController@all');
-    $router->get('role/{id}', 'RolesController@get');
-    $router->post('role', 'RolesController@add');
-    $router->put('role/{id}', 'RolesController@put');
-    $router->delete('role/{id}', 'RolesController@remove');
-    
-    /**
-     * Routes for resource permission
-     */
-    $router->get('permission', 'PermissionsController@all');
-    $router->get('permission/{id}', 'PermissionsController@get');
-    $router->post('permission', 'PermissionsController@add');
-    $router->put('permission/{id}', 'PermissionsController@put');
-    $router->delete('permission/{id}', 'PermissionsController@remove');
 });
