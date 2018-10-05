@@ -3,9 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-trait RESTActions {
-
-
+trait RESTActions 
+{
     public function all()
     {
         $m = self::MODEL;
@@ -44,7 +43,7 @@ trait RESTActions {
     public function remove($id)
     {
         $m = self::MODEL;
-        if(is_null($m::find($id))){
+        if (is_null($m::find($id))) {
             return $this->respond(Response::HTTP_NOT_FOUND);
         }
         $m::destroy($id);

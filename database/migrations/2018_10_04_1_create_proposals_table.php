@@ -12,7 +12,6 @@ class CreateProposalsTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('approval_from');
-            $table->integer('proposal_no')->unsigned();
             $table->string('client_source');
             $table->string('client_name');
             $table->string('value');
