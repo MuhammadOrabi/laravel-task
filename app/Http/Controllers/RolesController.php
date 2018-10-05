@@ -2,7 +2,7 @@
 
 class RolesController extends Controller {
 
-    const MODEL = "App\Role";
+    const MODEL = "App\Models\Role";
 
     use RESTActions;
 

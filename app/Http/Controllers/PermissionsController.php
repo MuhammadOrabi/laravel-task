@@ -2,7 +2,7 @@
 
 class PermissionsController extends Controller {
 
-    const MODEL = "App\Permission";
+    const MODEL = "App\Models\Permission";
 
     use RESTActions;
 

@@ -1,17 +1,16 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Permission extends Model {
+class Role extends Model {
 
-    protected $fillable = ["title", "slug", "model"];
+    protected $fillable = ["title", "slug"];
 
     protected $dates = [];
 
     public static $rules = [
         "title" => "required",
         "slug" => "required",
-        "model" => "required",
     ];
 
     // Relationships

@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -6,7 +6,7 @@ class Proposal extends Model {
 
     protected $fillable = ['type', 'approval_from', 'proposal_no', 'client_source', 'client_name', 'value', 'user_id'];
 
-    protected $dates = ['due'];
+    protected $dates = ['due', 'deleted_at'];
 
     public static $rules = [
         'type' => 'required',
@@ -20,6 +20,17 @@ class Proposal extends Model {
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
+    }
+
+    /**
+     * Get the proposal's id.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getIdAttribute($value)
+    {
+        return sprintf('%05d', $value);
     }
 }

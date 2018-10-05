@@ -3,9 +3,20 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\Proposal;
+use App\Observers\ProposalObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        Proposal::observe(ProposalObserver::class);        
+    }
     /**
      * Register any application services.
      *

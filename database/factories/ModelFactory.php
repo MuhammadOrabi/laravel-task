@@ -11,36 +11,28 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
+        'password' => app('hash')->make('password')
     ];
 });
 
 /**
  * Factory definition for model App\Proposal.
  */
-$factory->define(App\Proposal::class, function ($faker) {
+$factory->define(App\Models\Proposal::class, function ($faker) {
     return [
-        'user_id' => $faker->key,
-    ];
-});
-
-/**
- * Factory definition for model App\Role.
- */
-$factory->define(App\Role::class, function ($faker) {
-    return [
-        // Fields here
-    ];
-});
-
-/**
- * Factory definition for model App\Permission.
- */
-$factory->define(App\Permission::class, function ($faker) {
-    return [
-        // Fields here
+        'user_id' => function () {
+            return factory('App\Models\User')->create()->id;
+        },
+        'type' => $faker->sentence(2),
+        'approval_from' => $faker->name,
+        'client_source' => $faker->sentence(2),
+        'client_name' => $faker->name,
+        'value' => $faker->sentence(),
+        'code' => $faker->word,
+        'due' => $faker->dateTime(),
     ];
 });

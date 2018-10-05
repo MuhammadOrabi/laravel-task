@@ -2,7 +2,7 @@
 
 class ProposalsController extends Controller {
 
-    const MODEL = 'App\Proposal';
+    const MODEL = 'App\Models\Proposal';
 
     use RESTActions;
 

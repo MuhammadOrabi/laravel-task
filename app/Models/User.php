@@ -1,6 +1,4 @@
-<?php
-
-namespace App;
+<?php namespace App\Models;
 
 use Illuminate\Auth\Authenticatable;
 use Laravel\Lumen\Auth\Authorizable;
@@ -28,5 +26,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = [
         'password',
+    ];
+
+    public static $rules = [
+        'email'     => 'required|email',
+        'password'  => 'required'
     ];
 }
