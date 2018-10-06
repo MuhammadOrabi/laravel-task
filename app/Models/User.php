@@ -28,24 +28,39 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'password', 'remember_token'
     ];
 
+    /**
+     * The attributes that has rules for submssion
+     *
+     * @var array
+     */
     public static $rules = [
         'email'     => 'required|email',
         'password'  => 'required'
     ];
 
-    public function proposal()
+    /**
+     * The proposals that belong to the user.
+     */
+    public function proposals()
     {
         return $this->hasMany('App\Models\Proposal');
     }
 
-     /**
-     * The roles that belong to the admin.
+    /**
+     * The roles that belong to the user.
      */
     public function roles()
     {
         return $this->belongsToMany('App\Models\Role');
     }
 
+    /**
+     * The roles that belong to the user.
+     * 
+     * @param string $model
+     * @param string $slug
+     * @return bool 
+     */
     public function getRole($model, $slug)
     {
         return $this->roles()->whereHas('permissions', function ($query) use ($model, $slug) {

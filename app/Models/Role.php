@@ -4,11 +4,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model 
 {
-
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = ["title", "slug"];
 
-    protected $dates = [];
-
+    /**
+     * The attributes that has rules for submssion
+     *
+     * @var array
+     */
     public static $rules = [
         "title" => "required",
         "slug" => "required",

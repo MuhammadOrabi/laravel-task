@@ -11,6 +11,12 @@ class ProposalsController extends Controller
 
     use RESTActions;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function add(Request $request)
     {
         $m = self::MODEL;

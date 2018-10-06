@@ -10,6 +10,14 @@ use Firebase\JWT\ExpiredException;
 
 class JwtMiddleware
 {
+    /**
+     * get the row of the model by id
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string  $guard
+     * @return \Closure  $next
+     */
      public function handle($request, Closure $next, $guard = null)
     {
         $token = $request->bearerToken();

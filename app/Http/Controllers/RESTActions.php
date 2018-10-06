@@ -5,6 +5,12 @@ use Illuminate\Http\Response;
 
 trait RESTActions 
 {
+    /**
+     * get all the rows of the model
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function all(Request $request)
     {
         $m = self::MODEL;
@@ -26,6 +32,13 @@ trait RESTActions
         return $this->respond(Response::HTTP_OK, $data);
     }
 
+    /**
+     * get the row of the model by id
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function get(Request $request, $id)
     {
         $m = self::MODEL;
@@ -41,6 +54,12 @@ trait RESTActions
         return $this->respond(Response::HTTP_OK, $model);
     }
 
+    /**
+     * add a row to the model
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function add(Request $request)
     {
         $m = self::MODEL;
@@ -53,6 +72,13 @@ trait RESTActions
         return $this->respond(Response::HTTP_CREATED, $m::create($request->all()));
     }
 
+    /**
+     * update the row of the model by id
+     *
+     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function put($id, Request $request)
     {
         $m = self::MODEL;
@@ -70,6 +96,13 @@ trait RESTActions
         return $this->respond(Response::HTTP_OK, $model);
     }
 
+    /**
+     * remove the row of the model by id
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function remove(Request $request, $id)
     {
         $m = self::MODEL;
@@ -85,6 +118,13 @@ trait RESTActions
         return $this->respond(Response::HTTP_NO_CONTENT);
     }
 
+    /**
+     * wrrapper for sending the response
+     *
+     * @param  int  $status
+     * @param  array  $data
+     * @return \Illuminate\Http\Response
+     */
     protected function respond($status, $data = [])
     {
         return response()->json($data, $status);

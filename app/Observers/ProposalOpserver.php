@@ -15,6 +15,7 @@ class ProposalObserver
      */
     public function created(Proposal $proposal)
     {
+        // Saveing the code attribute
         $type = uperFirstLetter($proposal->type);
         $approval_from = uperFirstLetter($proposal->approval_from);
         $proposal_no = $proposal->id;

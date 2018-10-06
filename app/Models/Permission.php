@@ -4,14 +4,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Permission extends Model {
 
-    protected $fillable = ["title", "slug", "model"];
+     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['title', 'slug', 'model'];
 
-    protected $dates = [];
-
+    /**
+     * The attributes that has rules for submssion
+     *
+     * @var array
+     */
     public static $rules = [
-        "title" => "required",
-        "slug" => "required",
-        "model" => "required",
+        'title' => 'required',
+        'slug' => 'required',
+        'model' => 'required',
     ];
 
     // Relationships
