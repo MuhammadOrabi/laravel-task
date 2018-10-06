@@ -58,7 +58,7 @@ class Proposal extends Model {
     }
 
     /**
-     * Get the proposal's id.
+     * Get the proposal's id formated in 5 digits.
      *
      * @param  string  $value
      * @return string

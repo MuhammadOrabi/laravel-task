@@ -24,11 +24,15 @@ trait RESTActions
         if (method_exists($m, 'scopeFiltered')) {
             $data = $m::filtered($request);
         }
-
-        $data = $data->paginate()->appends(
-            $request->except('page')
-        );
         
+        $requestParams = json_encode($request->all());
+
+        $data = app('cache')->remember('proposal.all.' . $requestParams, 60*60, function() use ($data, $request) {
+            return $data->paginate()->appends(
+                $request->except('page')
+            );
+        });
+
         return $this->respond(Response::HTTP_OK, $data);
     }
 
